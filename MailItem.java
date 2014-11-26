@@ -12,7 +12,7 @@ public class MailItem
     /**
      * constructor con 3 parametros para crear mensajes
      */
-    public MailItem(String from, String to, String message, String subject)
+    public MailItem(String from, String to, String subject, String message)
     {
       this.from = from;
       this.to = to;
@@ -51,5 +51,13 @@ public class MailItem
       System.out.println("To:  " + to);
       System.out.println("Subject:  " + subject);
       System.out.println("Message:  " + message);
+    }
+    
+    /**
+     * method getSubject
+     */
+    public String getSubject()
+    {
+      return subject;
     }
 }

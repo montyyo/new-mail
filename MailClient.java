@@ -67,4 +67,24 @@ public class MailClient
        int howMany = server.howManyMailItems(user);
        System.out.println( "el numero de mensajes es:  "  + howMany);
    }
+   
+   /**
+    * method with autorespond, send an automatic email when the user 
+    * have holidays
+    */
+   public void getNextMailItemAndAutorespond()
+   {
+      MailItem lastmessage = server.getNextMailItem(user);//ultimo mensaje  
+      String destino = lastmessage.getFrom();//exraemos el destino del ultimo mensaje
+      String subject = "RE:" + lastmessage.getSubject(); //reenvio del asunto
+      String newMessage  = "Estoy de vacaciones" + "\n"+ "Ultimo mensaje enviado:" + "\n" + lastmessage.getMessage();
+      MailItem autorespond = new MailItem(user, destino,subject,newMessage); 
+      server.post(autorespond); 
+      
+      System.out.println("Su mensaje fue enviado.");
+            
+      // server.post(lastmessage.printDatos());
+    }
+   
 }
+   
