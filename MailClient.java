@@ -1,18 +1,18 @@
 
 public class MailClient
 {
-   //servidor
+   //servidor- objeto mailserver
    private MailServer server;
-   //usuario
+   //usuario- direccion de correo del usuario que usa el cliente.
    private String user;
    
    /**
     * constructor con dos parametros
     */
-   public MailClient(MailServer newServer, String newUser)
+   public MailClient(MailServer server, String user)
    {
-       server = newServer;
-       user = newUser;
+       this.server = server;
+       this.user = user;
     
    }
    
@@ -22,6 +22,9 @@ public class MailClient
    public MailItem getNextMailItem()
    {
        return server.getNextMailItem(user);
+       //invocamos del servidor el metodo para obtener el ultimo correo
+       //who que es el usuario del cual queremos obtener el correo
+       // MailItem email = server.getNextMailItem(user); --->
    }
    
    /**
@@ -29,6 +32,7 @@ public class MailClient
     */
    public void printNextMailItem()
    {
+       //variable local para guardar los resultados del metodo.
        MailItem newItem = server.getNextMailItem(user);
        if ( newItem !=null)
        {
@@ -46,7 +50,7 @@ public class MailClient
     */
    public void sendMailItem(String newTo, String newMessage)
    {
-     
+     //creamos un objeto mailaitem, (new mailitem). 
      MailItem newmessage;
      newmessage = new MailItem(user, newTo,  newMessage);
      server.post(newmessage);

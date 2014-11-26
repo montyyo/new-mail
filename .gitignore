@@ -1,2 +1,3 @@
 *.ctxt
-*.bluej*.txt*.TXT*.class
+*.class
+*.bluej
