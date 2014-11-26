@@ -46,6 +46,7 @@ public class MailItem
     
     public void printDatos()
     {
+      // new data subject
       System.out.println("From:  " + from);
       System.out.println("To:  " + to);
       System.out.println("Subject:  " + subject);
