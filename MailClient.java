@@ -49,11 +49,11 @@ public class MailClient
    /**
     * metodo que envia un email
     */
-   public void sendMailItem(String newTo, String newMessage)
+   public void sendMailItem(String newTo, String subject, String newMessage)
    {
      //creamos un objeto mailaitem, (new mailitem). 
      MailItem newmessage;
-     newmessage = new MailItem(user, newTo,  newMessage);
+     newmessage = new MailItem(user, newTo, subject ,newMessage);
      server.post(newmessage);
      
 
