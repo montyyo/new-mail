@@ -56,7 +56,15 @@ public class MailClient
      newmessage = new MailItem(user, newTo, subject ,newMessage);
      server.post(newmessage);
      
-
    }
-         
+   
+   /**
+    * new method howManyMails, to know the number of email 
+    */
+   public void howManyMails()
+   {
+       // we call the method howManyMailItems in the class server to know it
+       int howMany = server.howManyMailItems(user);
+       System.out.println( "el numero de mensajes es:  "  + howMany);
+   }
 }
