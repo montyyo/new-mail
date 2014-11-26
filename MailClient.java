@@ -6,6 +6,7 @@ public class MailClient
    //usuario- direccion de correo del usuario que usa el cliente.
    private String user;
    
+   
    /**
     * constructor con dos parametros
     */
