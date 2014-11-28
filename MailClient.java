@@ -35,12 +35,17 @@ public class MailClient
    public void printNextMailItem()
    {
        //variable local para guardar los resultados del metodo.
-       lastEmail = server.getNextMailItem(user);
-       if ( lastEmail !=null)
-       {
-           lastEmail.printDatos();
+       //String.contains("");
+       String oferta = "oferta";
+       String viagra = "viagra";
+       String proyecto = "proyecto";
+       
+       String spam = lastEmail.getMessage();
+       if (lastEmail != null){
+
+                  lastEmail.printDatos();
+           }
         
-       }
        else
        {
             System.out.println("No hay mensajes nuevos en el buzón");
