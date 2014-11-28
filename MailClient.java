@@ -35,10 +35,10 @@ public class MailClient
    public void printNextMailItem()
    {
        //variable local para guardar los resultados del metodo.
-       MailItem newItem = server.getNextMailItem(user);
-       if ( newItem !=null)
+       lastEmail = server.getNextMailItem(user);
+       if ( lastEmail !=null)
        {
-           newItem.printDatos();
+           lastEmail.printDatos();
         
        }
        else
@@ -107,13 +107,7 @@ public class MailClient
       
     }
     
-    /**
-     * metodo para detectar spam
-     */
-    public void blockSpam()
-    {
-         
-    }
+    
     
 }
    
