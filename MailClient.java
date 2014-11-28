@@ -5,8 +5,8 @@ public class MailClient
    private MailServer server;
    //usuario- direccion de correo del usuario que usa el cliente.
    private String user;
-   
-   
+   //atributo ultimo mensaje
+   private MailItem lastEmail;
    /**
     * constructor con dos parametros
     */
@@ -14,7 +14,7 @@ public class MailClient
    {
        this.server = server;
        this.user = user;
-    
+       
    }
    
    /**
@@ -22,7 +22,8 @@ public class MailClient
     */
    public MailItem getNextMailItem()
    {
-       return server.getNextMailItem(user);
+       lastEmail = server.getNextMailItem(user);
+       return lastEmail;
        //invocamos del servidor el metodo para obtener el ultimo correo
        //who que es el usuario del cual queremos obtener el correo
        // MailItem email = server.getNextMailItem(user); --->
@@ -74,17 +75,41 @@ public class MailClient
     */
    public void getNextMailItemAndAutorespond()
    {
-      MailItem lastmessage = server.getNextMailItem(user);//ultimo mensaje  
-      String destino = lastmessage.getFrom();//exraemos el destino del ultimo mensaje
-      String subject = "RE:" + lastmessage.getSubject(); //reenvio del asunto
-      String newMessage  = "Estoy de vacaciones" + "\n"+ "Ultimo mensaje enviado:" + "\n" + lastmessage.getMessage();
-      MailItem autorespond = new MailItem(user, destino,subject,newMessage); 
-      server.post(autorespond); 
+      //ultimo mensaje  del usuario, peticion de ultimo mensaje(vacia bandeja), por ello usamos la variable local en el if
+      MailItem lastmessage = server.getNextMailItem(user);
+      if (lastmessage != null){
+          String destino = lastmessage.getFrom();//exraemos el destino del ultimo mensaje
+          String subject = "RE:" + lastmessage.getSubject(); //reenvio del asunto
+          String newMessage  = "Estoy de vacaciones" + "\n"+ "Ultimo mensaje enviado:" + "\n" + lastmessage.getMessage();
+          MailItem autorespond = new MailItem(user, destino,subject,newMessage); //objeto para enviar correo autorrespuesta
+          server.post(autorespond); //metodo para enviar mensajes
       
-      System.out.println("Su mensaje fue enviado.");
-            
+          System.out.println("Su mensaje fue enviado.");
+      }
+      else{
+          System.out.println("No hay mensajes nuevos");
+      }
       // server.post(lastmessage.printDatos());
+      // " vacaciones" + System.lineSeparator() --> salto de linea 
     }
    
+    /**
+     * metodo para ver ultimo correo por pantalla siempre que queramos
+     */
+    public void printLastMailItem()
+    {
+       
+           System.out.println("El ultimo mensaje es :" + "\n" + lastEmail);
+      
+    }
+    
+    /**
+     * metodo para detectar spam
+     */
+    public void blockSpam()
+    {
+         
+    }
+    
 }
    
