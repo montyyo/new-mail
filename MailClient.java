@@ -99,7 +99,7 @@ public class MailClient
     public void printLastMailItem()
     {
         if (lastEmail != null){
-           System.out.println("El ultimo mensaje es :" + "\n" + lastEmail);
+           lastEmail.printDatos();
         }
         else{
              System.out.println("no hay mensajes guardados" );
