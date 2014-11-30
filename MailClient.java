@@ -36,6 +36,7 @@ public class MailClient
    {
        //variable local para guardar los resultados del metodo.
        //String.contains("");
+       lastEmail = server.getNextMailItem(user);
        String oferta = "oferta";
        String viagra = "viagra";
        String proyecto = "proyecto";
